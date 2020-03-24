@@ -1,6 +1,10 @@
 class NegociacaoController {
 
     constructor() {
+        /* alias para não repetir o querySelector
+           this não aponta mais para document, assim, 
+           O retorno da função bind é a função querySelector, 
+           que tem como contexto o document, ou seja, seu this será document.*/
         let $ = document.querySelector.bind(document);
 
         this._inputData = $("#data");
@@ -12,27 +16,19 @@ class NegociacaoController {
     adiciona(event) {
         event.preventDefault();
 
-        console.log(typeof (this._inputData.value));
-        console.log(this._inputData.value);
+        // "..." significa spread operator, a função está preparada para receber N elementos, como se fosse um for
         let data = new Date(...
             this._inputData.value
                 .split("-")
                 .map((item, indice) => item -indice % 2)
         );
-
-        console.log(data);
-        /*
+        
         let negociacao = new Negociacao(
-            this._inputData .value,
+            data,
             this._inputQuantidade.value,
             this._inputValor.value
         );
-            
-        // adicionar a negopciação em uma lista
+        
         console.log(negociacao);
-
-        console.log(this.inputData.value);
-        console.log(this.inputQuantidade.value);
-        console.log(this.inputValor.value);*/
     }
 }
