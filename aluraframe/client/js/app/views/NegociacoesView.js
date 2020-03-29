@@ -32,15 +32,23 @@ class NegociacoesView {
             <tfoot>
                 <td colspan="3"></td>
                 <td>${
+                        model.negociacoes.reduce(function(total, n) {
+                            return total + n.volume;
+                        }, 0.0)
+            }</td>
+            </tfoot>
+        </table>`;
+    }
+
+    /*
+    ${
                     (function (){
                         let total = 0;
                         model.negociacoes.forEach(n => total += n.volume);
                         return total;
                     })() //imediate invoked function expression IIFE
-                }</td>
-            </tfoot>
-        </table>`;
-    }
+                }
+    */
 
     update(model) {
         this._elemento.innerHTML = this._template(model);
